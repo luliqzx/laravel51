@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('home');
 });
+
+
+Route::post('prosestambah', 'CrudController@tambahdata');
+
+Route::get('read', function()
+{
+	return View::make('read');
+});
