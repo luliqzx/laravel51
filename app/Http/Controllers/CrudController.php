@@ -13,6 +13,8 @@ use Redirect;
 use View;
 use Auth;
 
+use App\Http\Requests\validasilogin;
+
 class CrudController extends Controller
 {
     public function tambahdata()
@@ -57,11 +59,14 @@ class CrudController extends Controller
         return Redirect::to('/read')->with('message', 'berhasil mengubah data');
     }
 
-    public function tambahlogin()
+    public function tambahlogin(validasilogin $data)
     {
+        $username = $data->username;
+        $password = bcrypt($data->password);
+
         $data = array(
-            'username'=>Input::get('username'),
-            'password'=>bcrypt( Input::get('password')),
+            'username'=>$username,
+            'password'=>$password,
             'hak_akses'=>'user',
             'email'=>Input::get('username')
             );
@@ -70,7 +75,7 @@ class CrudController extends Controller
         return Redirect::to('/login')->with('message', 'berhasil mendaftar');
     }
 
-    public function login()
+    public function login(validasilogin $validasilogin)
     {
         if (Auth::attempt(['username'=>Input::get('username'), 'password'=>Input::get('password')])) {
             if (Auth::user()->hak_akses=="admin") {
