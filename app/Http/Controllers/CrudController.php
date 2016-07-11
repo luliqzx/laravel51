@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use Redirect;
+use View;
 
 class CrudController extends Controller
 {
@@ -23,6 +24,36 @@ class CrudController extends Controller
 
         DB::table('siswa')->insert($data);
         return Redirect::to('/read')->with('message', 'berhasil menambah data');
+    }
+
+    public function lihatdata()
+    {
+        $data = DB::table('siswa')->get();
+        return View::make('read')->with('siswa', $data);
+    }
+
+    public function hapusdata($id)
+    {
+        $data = DB::table('siswa')->where('id', '=', $id)->delete();
+        return Redirect::to('/read')->with('message', 'berhasil menghapus data');
+    }
+
+    public function editdata($id)
+    {
+        $data = DB::table('siswa')->where('id', '=', $id)->first();
+        return View::make('form_edit')->with('siswa', $data);
+    }
+
+    public function proseseditdata()
+    {
+        $data = array(
+            'nama'=>Input::get('nama'),
+            'alamat'=>Input::get('alamat'),
+            'kelas'=>Input::get('kelas')
+            );
+
+        DB::table('siswa')->where('id', '=', Input::get('id'))->update($data);
+        return Redirect::to('/read')->with('message', 'berhasil mengubah data');
     }
 
 

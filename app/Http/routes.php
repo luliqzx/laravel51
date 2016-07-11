@@ -12,13 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+	return view('home');
 });
 
 
 Route::post('prosestambah', 'CrudController@tambahdata');
 
-Route::get('read', function()
-{
-	return View::make('read');
-});
+Route::get('read', 'CrudController@lihatdata');
+
+Route::get('hapus/{id}', 'CrudController@hapusdata');
+
+Route::get('formedit/{id}', 'CrudController@editdata');
+
+Route::post('prosesedit', 'CrudController@proseseditdata');
