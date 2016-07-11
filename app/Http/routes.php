@@ -25,3 +25,11 @@ Route::get('hapus/{id}', 'CrudController@hapusdata');
 Route::get('formedit/{id}', 'CrudController@editdata');
 
 Route::post('prosesedit', 'CrudController@proseseditdata');
+
+Route::get('login',function(){
+	return view('login');
+});
+
+Route::get('register',function(){
+	return view('register');
+});
