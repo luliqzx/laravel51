@@ -11,6 +11,7 @@ use Input;
 use DB;
 use Redirect;
 use View;
+use Auth;
 
 class CrudController extends Controller
 {
@@ -56,6 +57,34 @@ class CrudController extends Controller
         return Redirect::to('/read')->with('message', 'berhasil mengubah data');
     }
 
+    public function tambahlogin()
+    {
+        $data = array(
+            'username'=>Input::get('username'),
+            'password'=>bcrypt( Input::get('password')),
+            'hak_akses'=>'user'
+            );
+
+        DB::table('users')->insert($data);
+        return Redirect::to('/login')->with('message', 'berhasil mendaftar');
+    }
+
+    public function login()
+    {
+        if (Auth::attempt(['username'=>Input::get('username'), 'password'=>Input::get('password')])) {
+            if (Auth::user()->hak_akses=="admin") {
+                echo "admin";
+            }
+            else{
+                echo "user";
+
+            }
+        }
+        else{
+            echo "error login";
+        }
+
+    }
 
     /**
      * Display a listing of the resource.

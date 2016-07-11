@@ -29,7 +29,14 @@
 <p></p>
 
 {!!  Form::submit('Login', ['class'=>'btn btn-danger'])   !!}
+
+<p></p>
+
+<a href="{{ URL('register') }}">Daftar</a>  
+
 {!! Form::close() !!}
+
+
 
 		</div>
 

@@ -33,3 +33,8 @@ Route::get('login',function(){
 Route::get('register',function(){
 	return view('register');
 });
+
+Route::post('tambahlogin', 'CrudController@tambahlogin');
+
+Route::post('login', 'CrudController@login');
+

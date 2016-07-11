@@ -9,7 +9,7 @@
 </head>
 <body>
 @yield('content')
- 	{!! Html::script('assets/js/jquery.min.js') !!}
+ 	{!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js') !!}
  	{!! Html::script('assets/js/bootstrap.min.js') !!}
 </body>
 </html>
