@@ -62,7 +62,8 @@ class CrudController extends Controller
         $data = array(
             'username'=>Input::get('username'),
             'password'=>bcrypt( Input::get('password')),
-            'hak_akses'=>'user'
+            'hak_akses'=>'user',
+            'email'=>Input::get('username')
             );
 
         DB::table('users')->insert($data);
@@ -73,10 +74,12 @@ class CrudController extends Controller
     {
         if (Auth::attempt(['username'=>Input::get('username'), 'password'=>Input::get('password')])) {
             if (Auth::user()->hak_akses=="admin") {
-                echo "admin";
+               // echo "admin";
+                return Redirect::to('');
             }
             else{
-                echo "user";
+                // echo "user";
+                return Redirect::to('user');
 
             }
         }
@@ -85,6 +88,13 @@ class CrudController extends Controller
         }
 
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return Redirect::to('login')->with('message', 'Berhasil Logout');
+    }
+
 
     /**
      * Display a listing of the resource.

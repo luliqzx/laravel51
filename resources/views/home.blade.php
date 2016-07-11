@@ -2,13 +2,14 @@
 @section('content')
 
 <div class="container">
-	
+	 
 	<p></p>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-
-			Tambah Data
+<div class="text-left, clearfix">		Tambah Data </div>
+	
+			<div class="text-right" ><a href="{{ URL('logout') }}">Logout</a></div>
 		</div>
 
 		<div class="panel-body">

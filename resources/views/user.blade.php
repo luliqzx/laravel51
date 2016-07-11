@@ -1,0 +1,1 @@
+Selamat datang, {{ Auth::user()->username }} <a href="{{ URL('logout') }}">Logout</a>

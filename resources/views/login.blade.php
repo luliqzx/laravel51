@@ -10,7 +10,7 @@
 		<div class="panel-heading">
 			<span class="glyphicon glyphicon-user"></span>Login
 			@if(Session::has('message'))
-			<span class="label label-debger">{{  Session::get('message') }}</span>
+			<span class="label label-danger">{{  Session::get('message') }}</span>
 			@endif
 		</div>
 
@@ -26,15 +26,15 @@
 			
 			{!! Form::password('password',  ['placeholder'=>'Password', 'class'=>'form-control'])  !!}
 
-<p></p>
+			<p></p>
 
-{!!  Form::submit('Login', ['class'=>'btn btn-danger'])   !!}
+			{!!  Form::submit('Login', ['class'=>'btn btn-danger'])   !!}
 
-<p></p>
+			<p></p>
 
-<a href="{{ URL('register') }}">Daftar</a>  
+			<a href="{{ URL('register') }}">Daftar</a>  
 
-{!! Form::close() !!}
+			{!! Form::close() !!}
 
 
 
